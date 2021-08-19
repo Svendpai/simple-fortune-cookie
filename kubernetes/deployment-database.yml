@@ -17,3 +17,9 @@ spec:
       containers:
       - name: database
         image: redis
+        volumeMounts:
+        - mountPath: "/data"
+      volumes:
+      - name: pvc-database-volume
+        persistentVolumeClaim:
+          claimName: pvc-database
