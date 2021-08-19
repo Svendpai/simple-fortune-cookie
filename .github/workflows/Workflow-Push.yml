@@ -1,15 +1,8 @@
-name: Go-Build
+name: Workflow-Push
 
-on:
-  push:
-    branches-ignore:
-      - main
-  pull_request:
-    branches-ignore:
-      - main
+on: push
 
 jobs:
-
   build-backend:
     runs-on: ubuntu-latest
     defaults:
@@ -26,8 +19,8 @@ jobs:
     - name: Build
       run: go build -v .
 
-#    - name: Test
-#      run: go test -v .
+    - name: Test
+      run: go test -v .
 
 
   build-frontend:
@@ -45,3 +38,6 @@ jobs:
 
     - name: Build
       run: go build -v .
+
+    - name: Test
+      run: go test -v .
