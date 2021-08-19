@@ -9,8 +9,7 @@ env:
   docker_password: ${{secrets.DOCKER_PASSWORD}}
 
 jobs:
-
-  build-backend:
+  pull_request-build-backend:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,7 +29,7 @@ jobs:
       run: go test -v .
 
 
-  build-frontend:
+  pull_request-build-frontend:
     runs-on: ubuntu-latest
     defaults:
       run:
