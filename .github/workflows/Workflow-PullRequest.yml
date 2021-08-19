@@ -1,8 +1,6 @@
-name: Go-Build-Dockerhub
+name: Workflow-pull_request-main
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
     
@@ -47,6 +45,9 @@ jobs:
 
     - name: Build
       run: go build -v .
+
+    - name: Test
+      run: go test -v .
 
   dockerhub-backend:
     runs-on: ubuntu-latest

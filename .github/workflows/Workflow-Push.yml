@@ -1,15 +1,8 @@
-name: Go-Build
+name: Workflow-Push
 
-on:
-  push:
-    branches-ignore:
-      - main
-  pull_request:
-    branches-ignore:
-      - main
+on: push
 
 jobs:
-
   build-backend:
     runs-on: ubuntu-latest
     defaults:
