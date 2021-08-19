@@ -79,13 +79,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Docker-compose
-      run: docker-compose up -d --remove-orphans
-
-    - name: curl
-      run: curl localhost:8080
-
-#    - name: curl
-#      uses: wei/curl@v1
-#      with:
-#        args: localhost:8080
+    - name: Bash test script
+      run: bash ci/docker-compose-curl-test.sh
