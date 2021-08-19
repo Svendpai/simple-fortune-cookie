@@ -5,16 +5,30 @@ import (
 	"github.com/gomodule/redigo/redis"
 	"log"
 	"sync"
+	"time"
 )
 
 var dbLink redis.Conn
 var usingRedis = false
 
-func init() {
-	conn, err := redis.Dial("tcp", fmt.Sprintf("%s:6379", getEnv("REDIS_DNS", "localhost")))
+func connect() {
+
+    conn, err := redis.Dial("tcp", fmt.Sprintf("%s:6379", getEnv("REDIS_DNS", "localhost")))
+	
+	if (conn == nil) {
+		fmt.Println(time.Now().Format("2006-01-02 15:04:05") + ": Not Connected" )
+		time.Sleep(3 * time.Second)
+		connect()
+	}
+	
 	if err != nil {
 		log.Println("redis", err)
-	} else {
+		fmt.Println("Trying to connect again in 5 seconds")
+		time.Sleep(3 * time.Second)
+		connect()
+	} 
+
+	if (conn != nil && err == nil) {
 		dbLink = conn
 		usingRedis = true
 
@@ -37,4 +51,12 @@ func init() {
 			}
 		}
 	}
+
+
+
+}
+
+func init() {
+
+	connect()
 }
