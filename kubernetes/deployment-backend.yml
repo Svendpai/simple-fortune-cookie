@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-backend
+  labels:
+    app: deployment-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-backend
+  template:
+    metadata:
+      labels: 
+        app: deployment-backend
+    spec:
+      containers:
+      - name: backend
+        image: svvib19/sfc-backend

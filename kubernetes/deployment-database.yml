@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-database
+  labels:
+    app: deployment-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-database
+  template:
+    metadata:
+      labels: 
+        app: deployment-database
+    spec:
+      containers:
+      - name: database
+        image: redis
