@@ -17,3 +17,6 @@ spec:
       containers:
       - name: backend
         image: svvib19/sfc-backend
+        env:
+        - name: REDIS_DNS
+          value: service-database

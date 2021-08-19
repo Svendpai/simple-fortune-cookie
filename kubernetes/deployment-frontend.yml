@@ -17,3 +17,6 @@ spec:
       containers:
       - name: frontend
         image: svvib19/sfc-frontend
+        env:
+        - name: BACKEND_DNS
+          value: service-backend
