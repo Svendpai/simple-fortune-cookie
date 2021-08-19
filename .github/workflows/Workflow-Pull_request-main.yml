@@ -1,4 +1,4 @@
-name: Go-Build-Dockerhub
+name: Workflow-Pull_request-main
 
 on:
   pull_request:
