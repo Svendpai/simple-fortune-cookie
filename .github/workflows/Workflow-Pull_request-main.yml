@@ -81,3 +81,19 @@ jobs:
 
     - name: Bash test script
       run: bash ci/docker-compose-curl-test.sh
+  
+
+  deploy-to-kubernetes:
+    runs-on: ubuntu-latest
+    needs: [dockerhub-frontend, dockerhub-backend]
+    steps:
+    - uses: danielr1996/kubectl-action@1.0.0
+      name: Deploy pvc
+      with:
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        args: apply -f kubernetes-pvc/
+    - uses: danielr1996/kubectl-action@1.0.0
+      name: Deploy deployments and services
+      with:
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        args: apply -f kubernetes/
